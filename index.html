@@ -499,7 +499,10 @@ html body.jw-landing #homePage::before,html body.jw-landing #homePage::after{bac
    const ob=new MutationObserver(()=>{document.querySelectorAll('[data-edit],[data-delete]').forEach(x=>x.style.display='none')});ob.observe(document.body,{childList:true,subtree:true});
   }
  }
- document.getElementById('kpi-login').addEventListener('submit',async e=>{e.preventDefault();status.textContent='연결 중...';try{await request('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:document.getElementById('kpi-pin').value})});await start()}catch(err){status.textContent=err.message}});
- try{await start()}catch(e){status.textContent='비밀번호를 입력해 주세요.'}
+ const loginFlag='jwjmqc_login_this_page';
+ const isReload=performance.getEntriesByType('navigation')[0]?.type==='reload';
+ if(!isReload)sessionStorage.removeItem(loginFlag);
+ document.getElementById('kpi-login').addEventListener('submit',async e=>{e.preventDefault();status.textContent='연결 중...';try{await request('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pin:document.getElementById('kpi-pin').value})});await start();sessionStorage.setItem(loginFlag,'1')}catch(err){status.textContent=err.message}});
+ if(isReload&&sessionStorage.getItem(loginFlag)==='1'){try{await start()}catch(e){sessionStorage.removeItem(loginFlag);status.textContent='비밀번호를 입력해 주세요.'}}
 })();
 </script></body></html>
