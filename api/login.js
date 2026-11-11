@@ -1,0 +1,2 @@
+import {session,error} from './_common.js';
+export default async function handler(req,res){if(req.method!=='POST')return error(res,405,'허용되지 않는 요청');const pin=String(req.body?.pin||'');const role=pin===(process.env.ADMIN_PIN||'1234')?'admin':pin==='0000'?'viewer':null;if(!role)return error(res,401,'비밀번호가 올바르지 않습니다.');try{session(res,role);return res.json({role})}catch(e){return error(res,500,e.message)}}
