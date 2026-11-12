@@ -97,10 +97,10 @@ body.jw-landing .home-bottom{left:clamp(24px,4vw,60px);right:clamp(24px,4vw,60px
 
 /* 공정품질 연간 월별 추이: 기존 월별 MES 저장 데이터로만 그래프 생성 */
 .process-trend-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:20px}
-.process-trend-card{background:#fff;border:1px solid #e0e8f2;border-radius:15px;padding:19px;min-width:0}
+.process-trend-card{background:#fff;border:1px solid #e0e8f2;border-radius:15px;padding:19px;min-width:0;display:flex;flex-direction:column;min-height:328px}
 .process-trend-card h3{margin:0 0 5px;font-size:16px;color:#1b3455}
 .process-trend-card .process-hint{margin:0 0 14px}
-.process-trend-svg{width:100%;height:auto;display:block;overflow:visible}
+.process-trend-svg{width:100%;height:auto;display:block;overflow:visible}.process-trend-body{flex:1;display:flex;flex-direction:column;justify-content:space-between}.process-trend-meta{font-size:12px;color:#56708d;text-align:right;margin-top:6px}
 .process-trend-svg text{font-family:system-ui,'Malgun Gothic',sans-serif;font-size:11px;fill:#64748b}
 .process-trend-empty{text-align:center;padding:55px 12px;color:#7a8ba2}
 @media(max-width:900px){.process-trend-grid{grid-template-columns:1fr}}
@@ -748,18 +748,25 @@ $('processTypePpmTable').innerHTML='<thead><tr><th>불량 유형</th><th>수량<
 const trendMonths=Array.from({length:12},(_,i)=>{const m=i+1;if(!processData[String(m)])return {m,has:false};const rs=combineProcess([m]);const gs=line==='all'?PROCESS_LINES.map(l=>rs.groups[l]):[rs.groups[line]];const prod=sum(gs,'production'),def=sum(gs,'defects');return {m,has:true,production:prod,defects:def,ppm:ppm(def,prod),cost:sum(gs,'cost')};});
 function renderProcessTrend(id,key,color){
  const data=trendMonths.filter(x=>x.has);if(!data.length){$(id).innerHTML='<div class="process-trend-empty">월별 MES를 업로드하면 연간 추이가 표시됩니다.</div>';return;}
- const width=620,height=235,left=62,right=16,top=18,bottom=40,plotW=width-left-right,plotH=height-top-bottom;
- const max=Math.max(1,...data.map(x=>x[key]||0))*1.12;
- const fmt=v=>Math.abs(v)>=1000000?(v/1000000).toFixed(1)+'백만':Math.abs(v)>=10000?(v/10000).toFixed(1)+'만':Math.round(v).toLocaleString('ko-KR');
+ const width=640,height=260,left=68,right=28,top=28,bottom=46,plotW=width-left-right,plotH=height-top-bottom;
+ const max=Math.max(1,...data.map(x=>x[key]||0))*1.18;
+ const axisFmt=v=>Math.abs(v)>=100000000?(v/100000000).toFixed(1)+'억':Math.abs(v)>=1000000?(v/1000000).toFixed(1)+'백만':Math.abs(v)>=10000?(v/10000).toFixed(1)+'만':Math.round(v).toLocaleString('ko-KR');
+ const exactFmt=v=>Math.round(v).toLocaleString('ko-KR');
+ const labelText=v=>key==='ppm'?`${exactFmt(v)} PPM`:key==='cost'?`${exactFmt(v)}원`:`${exactFmt(v)} EA`;
  const x=m=>left+(m-1)*plotW/11,y=v=>top+plotH-(v/max)*plotH;
+ const barW=Math.min(30,plotW/18);
  let svg=`<svg class="process-trend-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="1월부터 12월까지 ${key} 월별 추이">`;
- for(let i=0;i<=4;i++){const val=max*i/4,yy=y(val);svg+=`<line x1="${left}" y1="${yy}" x2="${width-right}" y2="${yy}" stroke="#e8eef5"/><text x="${left-9}" y="${yy+4}" text-anchor="end">${fmt(val)}</text>`;}
+ for(let i=0;i<=4;i++){const val=max*i/4,yy=y(val);svg+=`<line x1="${left}" y1="${yy}" x2="${width-right}" y2="${yy}" stroke="#e8eef5"/><text x="${left-10}" y="${yy+4}" text-anchor="end">${axisFmt(val)}</text>`;}
  for(let m=1;m<=12;m++)svg+=`<text x="${x(m)}" y="${height-12}" text-anchor="middle">${m}월</text>`;
- // 월별 막대그래프: 누락 월은 막대를 그리지 않음
- for(const item of data){const value=item[key]||0,yy=y(value),barW=Math.min(28,plotW/17);svg+=`<rect x="${x(item.m)-barW/2}" y="${yy}" width="${barW}" height="${Math.max(1,top+plotH-yy)}" rx="4" fill="${color}" opacity=".86"><title>${item.m}월: ${Math.round(value).toLocaleString('ko-KR')}${key==='ppm'?' PPM':key==='cost'?'원':' EA'}</title></rect>`;}
+ for(const item of data){
+  const value=item[key]||0,yy=y(value),barH=Math.max(1,top+plotH-yy),bx=x(item.m)-barW/2;
+  const textY=Math.max(14,yy-8);
+  svg+=`<rect x="${bx}" y="${yy}" width="${barW}" height="${barH}" rx="4" fill="${color}" opacity=".86"><title>${item.m}월: ${labelText(value)}</title></rect>`;
+  svg+=`<text x="${x(item.m)}" y="${textY}" text-anchor="middle" font-size="10" font-weight="700" fill="#36506d">${exactFmt(value)}</text>`;
+ }
  svg+='</svg>';
  const annual=data.reduce((n,v)=>n+(v[key]||0),0);const value=key==='ppm'?ppm(data.reduce((n,v)=>n+v.defects,0),data.reduce((n,v)=>n+v.production,0)):annual;
- $(id).innerHTML=svg+`<div style="font-size:12px;color:#56708d;text-align:right;margin-top:3px">${data.length}개월 등록 · ${key==='ppm'?'연간 종합 PPM':'등록 월 합계'} <b style="color:#17365d">${pf(value)}${key==='ppm'?' PPM':key==='cost'?' 원':' EA'}</b></div>`;
+ $(id).innerHTML=`<div class="process-trend-body">${svg}<div class="process-trend-meta">${data.length}개월 등록 · ${key==='ppm'?'연간 종합 PPM':'등록 월 합계'} <b style="color:#17365d">${pf(value)}${key==='ppm'?' PPM':key==='cost'?' 원':' EA'}</b></div></div>`;
 }
 renderProcessTrend('processTrendProduction','production','#3275cc');
 renderProcessTrend('processTrendDefects','defects','#e77b6e');
