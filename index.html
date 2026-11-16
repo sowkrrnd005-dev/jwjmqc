@@ -529,7 +529,78 @@ html.jwjmqc-cache-pending #vendorPage {pointer-events:none!important}
 .worst-head b{white-space:nowrap;font-variant-numeric:tabular-nums}
 @media(max-width:720px){.process-trend-card{padding:13px}.process-trend-grid{gap:12px}.process-graph{overflow-x:auto}.process-graph-item{min-width:76px}.vendor-bar-row{grid-template-columns:minmax(68px,100px) minmax(40px,1fr) minmax(90px,auto);gap:8px}}
 </style>
-</head><body><div id="kpi-sync-warning" hidden></div><aside aria-label="메인 메뉴" class="jw-cinema-side"><div class="jw-cinema-logo"><div class="jw-cinema-wordmark">JWJM</div><small>전우정밀 · 품질팀</small></div><nav class="jw-cinema-nav"><button class="current" data-page="dashboard" type="button">⌂   메인</button><button data-page="customer" type="button">◇   고객유출불량</button><button data-page="process" type="button">▥   공정품질실적</button><button data-page="vendor" type="button">▤   외주불량 현황</button><button class="jw-disabled" disabled="" title="추후 변경 예정" type="button">◇   단가표 관리 · 예정</button><button class="jw-disabled" disabled="" title="추후 변경 예정" type="button">⚙   기준정보 · 예정</button></nav><div class="jw-cinema-sidefoot">JWJM · QUALITY KPI SYSTEM</div></aside><div class="layout"><aside><div class="brand"><div aria-label="JWJM 로고" class="jw-brand-mark" role="img">JWJM</div><span>전우정밀<br/>품질 KPI</span></div><div class="sub">MAIN</div><button class="nav active" data-page="dashboard">⌂ 메인페이지</button><div class="jw-side-menu-groups" aria-label="품질 관리 메뉴">
+
+<style id="jwjmqc-topnav-category-groups">
+/* Landing top navigation only; no home content, dashboard or data changes. */
+body.jw-landing .jw-cinema-side{overflow:visible!important}
+body.jw-landing .jw-cinema-nav{
+  align-items:center!important;overflow:visible!important;flex-wrap:wrap!important;
+  position:relative!important;gap:9px!important;
+}
+body.jw-landing .jw-cinema-nav>button,
+body.jw-landing .jw-cinema-nav>.jw-topnav-future,
+body.jw-landing .jw-cinema-nav>.jw-topnav-details>summary{
+  font-family:'Gowun Dodum','Malgun Gothic',sans-serif!important;
+  font-size:15px!important;font-weight:700!important;line-height:1.4!important;
+  color:#e7f1ff!important;white-space:nowrap!important;
+  display:inline-flex!important;align-items:center!important;gap:5px!important;
+  border:1px solid transparent!important;border-radius:11px!important;
+  padding:10px 15px!important;min-height:43px!important;box-sizing:border-box!important;
+}
+body.jw-landing .jw-cinema-nav>.jw-topnav-future{
+  cursor:default!important;color:#c7d4e7!important;background:rgba(75,113,167,.1)!important;
+}
+body.jw-landing .jw-cinema-nav>.jw-topnav-details{position:relative!important;z-index:250!important}
+body.jw-landing .jw-cinema-nav>.jw-topnav-details>summary{
+  list-style:none!important;cursor:pointer!important;user-select:none!important;
+}
+body.jw-landing .jw-cinema-nav>.jw-topnav-details>summary::-webkit-details-marker{display:none}
+body.jw-landing .jw-cinema-nav>.jw-topnav-details>summary:hover,
+body.jw-landing .jw-cinema-nav>.jw-topnav-details[open]>summary,
+body.jw-landing .jw-cinema-nav>button.active,
+body.jw-landing .jw-cinema-nav>.jw-topnav-details:has(button.active)>summary{
+  background:linear-gradient(110deg,#376ac2a6,#172d62)!important;
+  border-color:#85b8ff6b!important;
+}
+body.jw-landing .jw-topnav-chevron{margin-left:5px;color:#a7c7f9}
+body.jw-landing .jw-topnav-details[open] .jw-topnav-chevron{transform:rotate(180deg)}
+body.jw-landing .jw-topnav-submenu{
+  position:absolute!important;top:calc(100% + 7px)!important;left:0!important;
+  display:flex!important;flex-direction:column!important;gap:4px!important;
+  min-width:215px!important;padding:9px!important;box-sizing:border-box!important;
+  border:1px solid #476c9d!important;border-radius:13px!important;
+  background:#0b1d39!important;box-shadow:0 16px 35px #0008!important;
+  z-index:1000!important;
+}
+body.jw-landing .jw-topnav-submenu button{
+  display:block!important;width:100%!important;text-align:left!important;
+  min-height:42px!important;padding:10px 12px!important;
+  font-family:'Gowun Dodum','Malgun Gothic',sans-serif!important;
+  font-size:14px!important;white-space:nowrap!important;
+  color:#e7f1ff!important;border-radius:8px!important;
+}
+body.jw-landing .jw-topnav-submenu button:hover,
+body.jw-landing .jw-topnav-submenu button.active{background:#2859a2!important}
+@media(max-width:767px){
+  body.jw-landing .jw-cinema-nav{gap:5px!important}
+  body.jw-landing .jw-cinema-nav>button,
+  body.jw-landing .jw-cinema-nav>.jw-topnav-future,
+  body.jw-landing .jw-cinema-nav>.jw-topnav-details>summary{
+    padding:9px 10px!important;font-size:13px!important;min-height:39px!important;
+  }
+}
+</style>
+</head><body><div id="kpi-sync-warning" hidden></div><aside aria-label="메인 메뉴" class="jw-cinema-side"><div class="jw-cinema-logo"><div class="jw-cinema-wordmark">JWJM</div><small>전우정밀 · 품질팀</small></div><nav class="jw-cinema-nav" aria-label="상단 메뉴">
+<button data-page="dashboard" type="button">⌂ &nbsp; 메인</button>
+<span class="jw-topnav-future" title="부분별 현황 메뉴는 추후 추가">▦ &nbsp; 부분별 현황</span>
+<details class="jw-topnav-details">
+<summary>▤ &nbsp; 상세현황 <span class="jw-topnav-chevron" aria-hidden="true">⌄</span></summary>
+<div class="jw-topnav-submenu">
+<button data-page="customer" type="button">◉ &nbsp; 고객유출불량</button>
+<button data-page="process" type="button">▦ &nbsp; 공정품질실적</button>
+<button data-page="vendor" type="button">▤ &nbsp; 외주불량 현황</button>
+</div>
+</details></nav><div class="jw-cinema-sidefoot">JWJM · QUALITY KPI SYSTEM</div></aside><div class="layout"><aside><div class="brand"><div aria-label="JWJM 로고" class="jw-brand-mark" role="img">JWJM</div><span>전우정밀<br/>품질 KPI</span></div><div class="sub">MAIN</div><button class="nav active" data-page="dashboard">⌂ 메인페이지</button><div class="jw-side-menu-groups" aria-label="품질 관리 메뉴">
   <div class="jw-side-category jw-side-future" aria-label="부분별 현황">▦ 부분별 현황</div>
   <details class="jw-side-category-group" open>
     <summary class="jw-side-category">▤ 상세현황</summary>
