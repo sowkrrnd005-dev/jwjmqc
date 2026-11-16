@@ -1026,4 +1026,89 @@ $v('vendorYear').addEventListener('change',e=>{selectedVendorYear=e.target.value
 #customerPage .customer-trend-host .process-trend-meta b{color:#17365d!important}
 @media(max-width:1100px){#customerPage .customer-trend-grid{grid-template-columns:repeat(3,minmax(340px,1fr))!important;overflow-x:auto!important;overscroll-behavior-x:contain;padding-bottom:8px!important}#customerPage .customer-ppm-card{grid-column:auto!important}#customerPage .customer-trend-card{min-height:315px!important}}
 </style>
+<style id="jwjmqc-presentation-readability">
+/* JWJMQC presentation readability pass — typography only; KPI data and calculations unchanged. */
+:root{font-size:17px}
+body{font-size:16px;line-height:1.5}
+/* Navigation / global titles */
+.layout aside .nav{font-size:16px!important;line-height:1.45!important;padding-top:13px;padding-bottom:13px}
+.layout aside .sub{font-size:13px!important;letter-spacing:.035em}
+.layout aside .brand{font-size:18px!important}
+.jw-top-brand{font-size:21px!important}
+.jw-top-kpi{font-size:15px!important}
+#customerPage h1,#processPage h1,#vendorPage h1{font-size:32px!important;line-height:1.3}
+#customerPage h2,#processPage h2,#vendorPage h2{font-size:22px!important;line-height:1.35}
+#customerPage h3,#processPage h3,#vendorPage h3{font-size:19px!important;line-height:1.35}
+#customerPage p,#processPage p,#vendorPage p{font-size:15px;line-height:1.55}
+/* Filters and controls: larger text and taller targets for screen projection */
+#customerPage button,#customerPage select,#customerPage input,#customerPage label,
+#processPage button,#processPage select,#processPage input,#processPage label,
+#vendorPage button,#vendorPage select,#vendorPage input,#vendorPage label{font-size:16px!important;line-height:1.35}
+#customerPage .btn,#processPage .btn,#vendorPage .btn,
+#customerPage button,#processPage button,#vendorPage button{min-height:38px}
+#customerPage .hint,#customerPage .small,#customerPage .stat-title,#customerPage .barlabel,
+#processPage .process-hint,#processPage .process-note,#processPage .process-status,
+#vendorPage .vendor-hint,#vendorPage .vendor-filename,#vendorPage .vendor-legend{font-size:15px!important;line-height:1.5!important}
+/* Numeric KPI cards */
+#customerPage .num,#processPage .process-kpi .value{font-size:29px!important;font-weight:800}
+#customerPage .amount-tile b{font-size:24px!important}
+#processPage .process-kpi .label,#vendorPage .vendor-kpi small{font-size:15px!important;color:#4b627e}
+#processPage .process-kpi .unit,#vendorPage .vendor-kpi em{font-size:14px!important;color:#526780}
+#vendorPage .vendor-kpi strong{font-size:29px!important}
+/* Tables: bigger text with horizontal scrolling instead of clipped columns */
+#customerPage table,#processPage table,#vendorPage table,
+#customerPage .process-table,#processPage .process-table,#vendorPage .vendor-table{font-size:15px!important;line-height:1.55!important;font-variant-numeric:tabular-nums}
+#customerPage td,#customerPage th,#processPage td,#processPage th,#vendorPage td,#vendorPage th{font-size:15px!important;padding-top:12px!important;padding-bottom:12px!important}
+#customerPage .tablewrap,#processPage .tablewrap,#vendorPage .vendor-table-wrap{overflow-x:auto;max-width:100%}
+#customerPage .month-tab{font-size:15px!important;min-height:42px}
+/* Customer: retain exactly three equal cards on a single row */
+#customerPage .customer-trend-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important}
+#customerPage .customer-trend-card{min-height:365px!important;padding:21px!important}
+#customerPage .customer-trend-card h3{font-size:19px!important}
+#customerPage .customer-trend-card .process-hint{font-size:14px!important;color:#536b85!important;min-height:22px!important}
+#customerPage .customer-trend-host .process-trend-meta{font-size:15px!important;line-height:1.5!important}
+/* SVG charts: strengthen text without changing chart geometry/data */
+.kpi-precise-svg .kpi-axis-label{font-size:13px!important;fill:#47617e!important}
+.kpi-precise-svg .kpi-month-label{font-size:14px!important;fill:#425b78!important}
+.kpi-precise-svg .kpi-legend-label{font-size:14px!important;fill:#344b67!important}
+.kpi-precise-svg .kpi-exact-label{font-size:13px!important;font-weight:850!important}
+#customerPage .customer-trend-host .kpi-customer-svg .kpi-exact-label,
+#customerPage .customer-trend-host .kpi-customer-svg .kpi-ppm-label{font-size:13px!important;font-weight:850!important}
+.process-trend-svg text{font-size:13px!important;fill:#3c5674!important}
+#processPage .process-trend-card{padding:22px!important}
+#processPage .process-trend-card h3{font-size:20px!important}
+#processPage .process-trend-card .process-hint{font-size:15px!important;color:#526982!important}
+#processPage .process-trend-meta{font-size:15px!important}
+#processPage .process-graph-item .kpi-group-exact{font-size:13px!important}
+#processPage .process-graph-item small{font-size:13px!important}
+#processPage .process-graph-item b{font-size:14px!important}
+#processPage .worst-head{font-size:16px!important}
+#processPage .worst-body small{font-size:14px!important}
+#processPage .worst-rank{font-size:15px!important;width:32px;height:32px}
+/* Supplier dashboard */
+#vendorPage .vendor-hero p{font-size:16px!important}
+#vendorPage .vendor-toolbar label:not(.vendor-upload),#vendorPage .vendor-upload{font-size:16px!important}
+#vendorPage .vendor-panel h2{font-size:22px!important}
+#vendorPage .vendor-panel-head p{font-size:15px!important;color:#526780}
+#vendorPage .vendor-bar-row{font-size:16px!important;grid-template-columns:minmax(110px,150px) minmax(60px,1fr) minmax(130px,auto)!important}
+#vendorPage .vendor-bar-row b{font-size:16px!important}
+#vendorPage .vendor-empty{font-size:16px!important}
+/* Form dialogs and customer detail list */
+.modal,.modal input,.modal select,.modal textarea,.modal button{font-size:16px!important}
+.modalhead h2{font-size:23px!important}
+.field{font-size:16px!important}
+/* Preserve single-row layout on smaller screens while allowing readable horizontal pan */
+@media(max-width:1200px){
+  #customerPage .customer-trend-grid{grid-template-columns:repeat(3,minmax(340px,1fr))!important;overflow-x:auto!important}
+  #customerPage .customer-trend-card{min-height:340px!important}
+}
+@media(max-width:640px){
+  #customerPage h1,#processPage h1,#vendorPage h1{font-size:25px!important}
+  #customerPage h2,#processPage h2,#vendorPage h2{font-size:19px!important}
+  #customerPage h3,#processPage h3,#vendorPage h3{font-size:17px!important}
+  #customerPage .customer-trend-card{padding:15px!important}
+  #vendorPage .vendor-bar-row{grid-template-columns:minmax(85px,110px) minmax(35px,1fr) minmax(100px,auto)!important}
+}
+
+</style>
 </body></html>
