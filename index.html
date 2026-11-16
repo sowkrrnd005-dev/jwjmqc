@@ -1013,8 +1013,8 @@ $v('vendorYear').addEventListener('change',e=>{selectedVendorYear=e.target.value
 })();
 </script>
 <style id="customer-process-chart-style">
-#customerPage>.customer-trend-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;align-items:stretch!important;margin:16px 0!important}
-#customerPage .customer-ppm-card{grid-column:1/-1!important}#customerPage .customer-ppm-card .customer-trend-host{width:100%!important;max-width:900px!important;align-self:center!important}#customerPage .customer-trend-card{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:335px!important;box-sizing:border-box!important;padding:19px!important;border:1px solid #e0e8f2!important;border-radius:15px!important;background:#fff!important;color:#1b3455!important}
+#customerPage .customer-trend-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;align-items:stretch!important;margin:16px 0!important;width:100%!important;flex:0 0 100%!important;clear:both!important}
+#customerPage .customer-ppm-card{grid-column:auto!important}#customerPage .customer-ppm-card .customer-trend-host{width:100%!important;max-width:none!important;align-self:stretch!important}#customerPage .customer-trend-card{display:flex!important;flex-direction:column!important;min-width:0!important;min-height:335px!important;box-sizing:border-box!important;padding:19px!important;border:1px solid #e0e8f2!important;border-radius:15px!important;background:#fff!important;color:#1b3455!important}
 #customerPage .customer-trend-card h3{font-size:16px!important;font-weight:800!important;color:#1b3455!important;margin:0 0 5px!important;line-height:1.35!important}
 #customerPage .customer-trend-card .process-hint{font-size:12px!important;color:#8391a4!important;margin:0 0 14px!important;min-height:18px!important}
 #customerPage .customer-trend-host{display:block!important;flex:1!important;overflow:hidden!important;min-width:0!important;height:auto!important;min-height:0!important;padding:0!important;border:0!important;background:transparent!important}
@@ -1024,6 +1024,6 @@ $v('vendorYear').addEventListener('change',e=>{selectedVendorYear=e.target.value
 #customerPage .customer-trend-host .kpi-customer-svg .kpi-exact-label{font-size:11px!important;font-weight:800;fill:#244a73!important;stroke:#fff!important;stroke-width:3px!important;paint-order:stroke!important;pointer-events:none}
 #customerPage .customer-trend-host .process-trend-meta{font-size:12px;color:#56708d!important;text-align:right!important;white-space:normal;padding:6px 0 0!important;margin-top:auto!important}
 #customerPage .customer-trend-host .process-trend-meta b{color:#17365d!important}
-@media(max-width:850px){#customerPage>.customer-trend-grid{grid-template-columns:minmax(0,1fr)!important}#customerPage .customer-ppm-card{grid-column:auto!important}#customerPage .customer-trend-card{min-height:315px!important}}
+@media(max-width:1100px){#customerPage .customer-trend-grid{grid-template-columns:repeat(3,minmax(340px,1fr))!important;overflow-x:auto!important;overscroll-behavior-x:contain;padding-bottom:8px!important}#customerPage .customer-ppm-card{grid-column:auto!important}#customerPage .customer-trend-card{min-height:315px!important}}
 </style>
 </body></html>
